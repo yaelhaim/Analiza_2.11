@@ -1,26 +1,32 @@
 // ex7.js
 function loadUser(callback) {
-  setTimeout(() => callback("Dana"), 30);
+    setTimeout(() => callback("Dana"), 30);
 }
 
 function loadOrders(callback) {
-  setTimeout(() => callback(3), 10);
+    setTimeout(() => callback(3), 10);
 }
 
 function run() {
-  let user;
-  let orders;
+    let user;
+    let orders;
+    loadUser((name) => {
+        user = name;
 
-  loadUser((name) => {
-    user = name;
-  });
+        if (orders !== undefined) {
+            console.log("User: " + user);
+            console.log("Orders: " + orders);
+        }
+    });
 
-  loadOrders((count) => {
-    orders = count;
-  });
+    loadOrders((count) => {
+        orders = count;
 
-  console.log("User: " + user);
-  console.log("Orders: " + orders);
+        if (user !== undefined) {
+            console.log("User: " + user);
+            console.log("Orders: " + orders);
+        }
+    });
 }
 
 if (typeof module !== "undefined") module.exports = { run };
